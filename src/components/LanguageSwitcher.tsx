@@ -1,29 +1,26 @@
-import { FloatButton } from 'antd'
-import { useLanguageContext } from '../contexts/LanguageContext'
+import { Switch, Tooltip, Typography } from 'antd'
 import ReactCountryFlag from 'react-country-flag'
 
+import { useLanguageContext } from '../contexts/LanguageContext'
 
 export function LanguageSwitcher() {
   const { language, changeLanguage } = useLanguageContext()
 
+  const isEnglish = language === 'en'
+
   return (
-    <FloatButton.Group shape="circle" style={{ right: 24, top: 24 }}>
-      <FloatButton
-        tooltip="Português"
-        icon={
-        <ReactCountryFlag countryCode="BR" svg style={{ fontSize: '1em', lineHeight: '1em' }} />
-      }
-        type={language === 'pt' ? 'primary' : 'default'}
-        onClick={() => changeLanguage('pt')}
-      />
-      <FloatButton
-        tooltip="English"
-        icon={
-        <ReactCountryFlag countryCode="US" svg style={{ fontSize: '1em', lineHeight: '1em' }} />
-        }
-        type={language === 'en' ? 'primary' : 'default'}
-        onClick={() => changeLanguage('en')}
-      />
-    </FloatButton.Group>
+    <div className="language-switcher">
+      <Typography.Text className="language-switcher__label">
+        {isEnglish ? 'EN' : 'PT'}
+      </Typography.Text>
+      <Tooltip title={isEnglish ? 'Switch to Portuguese' : 'Mudar para inglês'} placement="bottomLeft">
+        <Switch
+          checked={isEnglish}
+          onChange={(checked) => changeLanguage(checked ? 'en' : 'pt')}
+          checkedChildren={<ReactCountryFlag countryCode="US" svg style={{ fontSize: '1em', lineHeight: '1em' }} />}
+          unCheckedChildren={<ReactCountryFlag countryCode="BR" svg style={{ fontSize: '1em', lineHeight: '1em' }} />}
+        />
+      </Tooltip>
+    </div>
   )
 }
