@@ -3,7 +3,6 @@ import { BsGithub, BsInstagram, BsLinkedin } from "react-icons/bs"
 import { Layout } from "antd"
 
 import { HeroSection } from "./components/HeroSection"
-import { LanguageSwitcher } from "./components/LanguageSwitcher"
 import { SpecializationsSection } from "./components/SpecializationsSection"
 import { TimelineSection } from "./components/TimelineSection"
 import {
@@ -39,7 +38,7 @@ export function Portifolio() {
 
   return (
     <Layout>
-      <Header />
+      <Header headerContent={content.header} />
       <HeroSection
         name="Rafael Manfrim"
         bio={content.bio}

@@ -14,6 +14,11 @@ export type HistoryEntry = {
 
 export type FormationTag = 'Front-End' | 'Back-End' | 'Mobile' | 'Outros'
 
+export type HeaderContent = {
+  cvFilePath: string
+  downloadCvLabel: string
+}
+
 export type Formation = {
   title: string
   tag: FormationTag
@@ -23,6 +28,7 @@ export type Formation = {
 }
 
 export type PortfolioContent = {
+  header: HeaderContent
   bio: string
   historyEntries: HistoryEntry[]
   formations: Formation[]
@@ -41,6 +47,10 @@ export const formationTagColors: Record<FormationTag, string> = {
 
 export const contentByLanguage: Record<Language, PortfolioContent> = {
   pt: {
+    header: {
+      cvFilePath: '/RafaelManfrim_CV.pdf',
+      downloadCvLabel: 'Baixar CV',
+    },
     bio: 'Desde criança sempre se encantou por tecnologia, o que o levou a cursar desenvolvimento de sistemas e se tornar um programador de destaque, após pouco tempo de curso já estava atuando no mercado de trabalho como desenvolvedor front-end e mais tarde buscou conhecimento para se tornar full-stack.',
     timelineTitle: 'Linha do Tempo',
     specializationsTitle: 'Especializações',
@@ -119,6 +129,10 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
     ],
   },
   en: {
+    header: {
+      cvFilePath: '/RafaelManfrim_CV_EN.pdf',
+      downloadCvLabel: 'Download CV',
+    },
     bio: 'Since childhood he has been fascinated by technology, which led him to study software development and become a standout programmer. Shortly after starting his studies, he was already working as a front-end developer and later pursued knowledge to become full-stack.',
     timelineTitle: 'Timeline',
     specializationsTitle: 'Specializations',

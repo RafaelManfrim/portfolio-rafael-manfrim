@@ -1,21 +1,19 @@
 import { Button } from "antd";
 import { LanguageSwitcher } from "./LanguageSwitcher";
-import { useLanguageContext } from "../contexts/LanguageContext";
+import { HeaderContent } from "../data/profile";
 
-export function Header() {
-  const { language } = useLanguageContext();
-
+export function Header({ headerContent }: { headerContent: HeaderContent }) {
   return (
     <header className="header-container">
       <Button
-        href="/RafaelManfrim_CV.pdf"
+        href={headerContent.cvFilePath}
         target="_blank"
         rel="noreferrer"
         type="primary"
         shape="round"
         size="middle"
       >
-        {language === "en" ? "Download CV" : "Baixar CV"}
+        {headerContent.downloadCvLabel}
       </Button>
       <LanguageSwitcher />
     </header>
