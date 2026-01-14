@@ -12,6 +12,7 @@ import {
   formationTagColors,
 } from "./data/profile"
 import { useLanguageContext } from "./contexts/LanguageContext"
+import { Header } from "./components/Header"
 
 const socialLinks: SocialLink[] = [
   {
@@ -38,7 +39,7 @@ export function Portifolio() {
 
   return (
     <Layout>
-      <LanguageSwitcher />
+      <Header />
       <HeroSection
         name="Rafael Manfrim"
         bio={content.bio}
