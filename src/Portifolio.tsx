@@ -1,10 +1,17 @@
+import { useMemo } from "react"
 import { BsGithub, BsInstagram, BsLinkedin } from "react-icons/bs"
 import { Layout } from "antd"
 
 import { HeroSection } from "./components/HeroSection"
+import { LanguageSwitcher } from "./components/LanguageSwitcher"
 import { SpecializationsSection } from "./components/SpecializationsSection"
 import { TimelineSection } from "./components/TimelineSection"
-import { type SocialLink, bio, formationTagColors, formations, historyEntries } from "./data/profile"
+import {
+  type SocialLink,
+  contentByLanguage,
+  formationTagColors,
+} from "./data/profile"
+import { useLanguageContext } from "./contexts/LanguageContext"
 
 const socialLinks: SocialLink[] = [
   {
@@ -25,22 +32,32 @@ const socialLinks: SocialLink[] = [
 ]
 
 export function Portifolio() {
-  
+  const { language } = useLanguageContext()
+
+  const content = useMemo(() => contentByLanguage[language], [language])
+
   return (
     <Layout>
+      <LanguageSwitcher />
       <HeroSection
         name="Rafael Manfrim"
-        bio={bio}
+        bio={content.bio}
         socialLinks={socialLinks}
         scrollTargetId="timeline-container"
       />
       <TimelineSection
         id="timeline-container"
-        entries={historyEntries}
+        entries={content.historyEntries}
         imageSrc="/rafael-manfrim.jpeg"
-        imageAlt="Foto Rafael Manfrim"
+        imageAlt={content.imageAlt}
+        title={content.timelineTitle}
       />
-      <SpecializationsSection formations={formations} tagColors={formationTagColors} />
+      <SpecializationsSection
+        formations={content.formations}
+        tagColors={formationTagColors}
+        title={content.specializationsTitle}
+        certificateLabel={content.certificateLabel}
+      />
     </Layout>
   )
 }

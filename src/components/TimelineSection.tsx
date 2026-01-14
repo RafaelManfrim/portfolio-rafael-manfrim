@@ -7,12 +7,13 @@ type TimelineSectionProps = {
   entries: HistoryEntry[]
   imageSrc: string
   imageAlt: string
+  title: string
 }
 
-export function TimelineSection({ id, entries, imageSrc, imageAlt }: TimelineSectionProps) {
+export function TimelineSection({ id, entries, imageSrc, imageAlt, title }: TimelineSectionProps) {
   return (
     <Layout.Content className="timeline-container" id={id}>
-      <Typography.Title>Linha do Tempo</Typography.Title>
+      <Typography.Title>{title}</Typography.Title>
       <Space>
         <Image src={imageSrc} alt={imageAlt} preview={false} />
         <Timeline
